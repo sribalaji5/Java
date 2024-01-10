@@ -1,0 +1,15 @@
+import java.util.Scanner;
+public class ReverseAlphabeticalOrder {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the word: ");
+        String word = scanner.nextLine();
+        char[] charArray = word.toCharArray();
+        Arrays.sort(charArray);
+        String reverseAlphabeticalOrder = new StringBuilder(new String(charArray)).reverse().toString();
+
+        System.out.println("Alphabetical Order (Reverse): " + reverseAlphabeticalOrder);
+
+        scanner.close();
+    }
+}
