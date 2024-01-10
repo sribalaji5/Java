@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class SeparateConsonantsAndVowels {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a word: ");
+        String word = scanner.nextLine().toLowerCase();
+        StringBuilder consonants = new StringBuilder();
+        StringBuilder vowels = new StringBuilder();
+        for (char ch : word.toCharArray()) {
+            if (Character.isLetter(ch)) {
+                if ("aeiou".indexOf(ch) != -1) {
+                    vowels.append(ch).append(" ");
+                } else {
+                    consonants.append(ch).append(" ");
+                }
+            }
+        }
+        System.out.println("Consonants: " + consonants.toString().trim());
+        System.out.println("Vowels: " + vowels.toString().trim());
+        scanner.close();
+    }
+}
