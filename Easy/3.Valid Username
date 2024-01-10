@@ -1,0 +1,13 @@
+import java.util.Scanner;
+public class UserNameValidator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a username: ");
+        String username = scanner.next();
+        if (username.length() >= 4 && username.length() <= 20 && username.matches("[a-zA-Z0-9]+")) {
+            System.out.println("Valid username.");
+        } else {
+            System.out.println("Invalid username. Please make sure the length is between 4 and 20, and only letters and digits are allowed.");
+        }
+    }
+}
