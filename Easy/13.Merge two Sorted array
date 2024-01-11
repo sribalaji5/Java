@@ -1,0 +1,18 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+public class MergeSortedArrays {
+    public static void main(String[] args) {
+        int[] arr1 = {1, 3, 4, 5};
+        int[] arr2 = {2, 4, 6, 8};
+        List<Integer> resultList = new ArrayList<>();
+        for (int num : arr1) {
+            resultList.add(num);
+        }
+        for (int num : arr2) {
+            resultList.add(num);
+        }
+        Collections.sort(resultList);
+        System.out.println("Merged and Sorted Array: " + resultList);
+    }
+}
