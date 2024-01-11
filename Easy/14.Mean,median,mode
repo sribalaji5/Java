@@ -1,0 +1,48 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+public class MeanMedianMode {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of elements in the array: ");
+        int n = scanner.nextInt();
+        int[] array = new int[n];\
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+        Arrays.sort(array);
+
+        // Mean Calculation
+        int sum = 0;
+        for (int num : array) {
+            sum += num;
+        }
+        double mean = (double) sum / n;
+        // Median Calculation
+        double median;
+        if (n % 2 == 0) {
+            median = (double) (array[n / 2 - 1] + array[n / 2]) / 2;
+        } else {
+            median = array[n / 2];
+        }
+        // Mode Calculation
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int num : array) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+        int mode = array[0];
+        int maxFrequency = 0;
+        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+            if (entry.getValue() > maxFrequency) {
+                mode = entry.getKey();
+                maxFrequency = entry.getValue();
+            }
+        }
+        System.out.println("Mean: " + mean);
+        System.out.println("Median: " + median);
+        System.out.println("Mode: " + mode);
+        scanner.close();
+    }
+}
