@@ -1,0 +1,21 @@
+import java.util.Scanner;
+public class HollowSquareSymbolPattern {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the symbol for the pattern: ");
+        char symbol = scanner.next().charAt(0);
+        System.out.print("Enter the number of rows/columns for the square: ");
+        int n = scanner.nextInt();
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (i == 1 || i == n || j == 1 || j == n) {
+                    System.out.print(symbol + " ");
+                } else {
+                    System.out.print("  ");
+                }
+            }
+            System.out.println();
+        }
+        scanner.close();
+    }
+}
