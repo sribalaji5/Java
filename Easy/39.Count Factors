@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class CountFactors {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+        int factors = countFactors(number);
+        System.out.println("Number of factors = " + factors);
+    }
+    static int countFactors(int n) {
+        if (n <= 1) {
+            return 1; // 1 and 0 have only one factor (themselves)
+        }
+        int count = 2;  // Account for 1 and n as factors
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                count += 2; // Add i and n/i as factors
+            }
+        }
+        return count;
+    }
+}
