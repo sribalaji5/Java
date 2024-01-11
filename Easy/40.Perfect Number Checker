@@ -1,0 +1,25 @@
+import java.util.Scanner;
+public class PerfectNumberChecker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+        if (isPerfectNumber(number)) {
+            System.out.println("It's a Perfect Number");
+        } else {
+            System.out.println("It's not a Perfect Number");
+        }
+    }
+    static boolean isPerfectNumber(int n) {
+        if (n <= 1) {
+            return false;
+        }
+        int sumOfFactors = 1;  // Account for 1 as a factor
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                sumOfFactors += i + n / i;  // Add i and n/i as factors
+            }
+        }
+        return sumOfFactors == n;
+    }
+}
