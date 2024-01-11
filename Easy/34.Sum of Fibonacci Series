@@ -1,0 +1,25 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the n value: ");
+        int n = scanner.nextInt();
+        int evenSum = fibonacciEvenSum(n);
+        System.out.println("The even sum of the Fibonacci series is: " + evenSum);
+    }
+    public static int fibonacciEvenSum(int n) {
+        int evenSum = 0;
+        for (int i = 0; i < n; i++) {
+            if (i % 2 == 0) {
+                evenSum += fibonacci(i);
+            }
+        }
+        return evenSum;
+    }
+    public static int fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}
