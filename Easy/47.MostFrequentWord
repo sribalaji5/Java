@@ -1,0 +1,33 @@
+import java.util.HashMap;
+import java.util.Map;
+public class MostFrequentWord {
+    public static void main(String[] args) {
+        String paragraph = "Ram hit a ball, the hit ball flew far after it was hit";
+        String[] banned = {"hit"};
+        String[] words = paragraph.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
+        Map<String, Integer> wordFrequency = new HashMap<>();
+        for (String word : words) {
+            if (!isBanned(word, banned)) {
+                wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1);
+            }
+        }
+        String mostFrequentWord = "";
+        int maxFrequency = 0;
+
+        for (Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {
+            if (entry.getValue() > maxFrequency) {
+                mostFrequentWord = entry.getKey();
+                maxFrequency = entry.getValue();
+            }
+        }
+        System.out.println("Most frequent word (excluding banned words): " + mostFrequentWord);
+    }
+    private static boolean isBanned(String word, String[] banned) {
+        for (String bannedWord : banned) {
+            if (bannedWord.equals(word)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
