@@ -1,0 +1,11 @@
+import java.util.Scanner;
+public class PowerOfThree {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Input: n = ");
+        int n = scanner.nextInt();
+        boolean isPowerOfThree = (n > 0) && (Math.log10(n) / Math.log10(3) % 1 == 0);
+        System.out.println("Output: " + isPowerOfThree);
+        scanner.close();
+    }
+}
