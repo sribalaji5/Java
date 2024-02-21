@@ -1,0 +1,11 @@
+import java.util.Scanner;
+public class SquareRoot {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number: ");
+        int num = scanner.nextInt();
+        double squareRoot = Math.sqrt(Math.abs(num));
+        System.out.println("Square Root: " + squareRoot + ", -" + squareRoot);
+        scanner.close();
+    }
+}
