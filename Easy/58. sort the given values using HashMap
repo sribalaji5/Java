@@ -1,0 +1,29 @@
+import java.util.*;
+public class SortHashMap {
+    public static void main(String[] args) {
+        Map<String, Integer> hashMap = new HashMap<>();
+        hashMap.put("Apple", 30);
+        hashMap.put("Banana", 20);
+        hashMap.put("Orange", 25);
+        hashMap.put("Grapes", 15);
+        System.out.println("Before sorting:");
+        displayMap(hashMap);
+        Map<String, Integer> sortedMap = sortMap(hashMap);
+        System.out.println("After sorting:");
+        displayMap(sortedMap);
+    }
+    private static void displayMap(Map<String, Integer> map) {
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+    private static Map<String, Integer> sortMap(Map<String, Integer> map) {
+        List<Map.Entry<String, Integer>> entryList = new ArrayList<>(map.entrySet());
+        entryList.sort(Map.Entry.comparingByValue());
+        Map<String, Integer> sortedMap = new LinkedHashMap<>();
+        for (Map.Entry<String, Integer> entry : entryList) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+        return sortedMap;
+    }
+}
