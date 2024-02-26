@@ -1,0 +1,40 @@
+import java.util.Scanner;
+public class SelectionIterationStatements {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("1. If Statement");
+            System.out.println("2. Switch Statement");
+            System.out.println("3. For Loop");
+            System.out.println("4. While Loop");
+            System.out.println("5. Do-While Loop");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.println("Syntax: if (condition) { /* code to be executed if condition is true */ }");
+                    break;
+                case 2:
+                    System.out.println("Syntax: switch (expression) { case value1: /* code to be executed if expression is value1 */ break; case value2: /* code to be executed if expression is value2 */ break; default: /* code to be executed if expression doesn't match any case */ }");
+                    break;
+                case 3:
+                    System.out.println("Syntax: for (initialization; condition; update) { /* code to be executed */ }");
+                    break;
+                case 4:
+                    System.out.println("Syntax: while (condition) { /* code to be executed while condition is true */ }");
+                    break;
+                case 5:
+                    System.out.println("Syntax: do { /* code to be executed */ } while (condition);");
+                    break;
+                case 0:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        } while (choice != 0);
+    }
+}
