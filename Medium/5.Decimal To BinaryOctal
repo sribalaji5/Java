@@ -1,0 +1,43 @@
+import java.util.Scanner;
+public class DecimalToBinaryOctal {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Decimal Number:");
+        int decimalNumber = scanner.nextInt();
+        if (decimalNumber < 0) {
+            System.out.println("Decimal number cannot be negative.");
+            return;
+        }
+        String binaryNumber = convertToBinary(decimalNumber);
+        String octalNumber = convertToOctal(decimalNumber);
+        System.out.println("Binary Number = " + binaryNumber);
+        System.out.println("Octal Number = " + octalNumber);
+        scanner.close();
+    }
+    public static String convertToBinary(int decimalNumber) {
+        StringBuilder binary = new StringBuilder();
+        if (decimalNumber == 0) {
+            binary.append(0);
+        } else {
+            while (decimalNumber > 0) {
+                int remainder = decimalNumber % 2;
+                binary.insert(0, remainder);
+                decimalNumber /= 2;
+            }
+        }
+        return binary.toString();
+    }
+    public static String convertToOctal(int decimalNumber) {
+        StringBuilder octal = new StringBuilder();
+        if (decimalNumber == 0) {
+            octal.append(0);
+        } else {
+            while (decimalNumber > 0) {
+                int remainder = decimalNumber % 8;
+                octal.insert(0, remainder);
+                decimalNumber /= 8;
+            }
+        }
+        return octal.toString();
+    }
+}
