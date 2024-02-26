@@ -1,0 +1,34 @@
+import java.util.Scanner;
+public class ATM {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] denominations = {2000, 500, 200, 100};
+        int[] notes = new int[denominations.length];
+        int totalBalance = 0;
+        for (int i = 0; i < denominations.length; i++) {
+            System.out.println("Enter the " + (i + 1) + "st Denomination:");
+            int denomination = scanner.nextInt();
+            int index = indexOf(denominations, denomination);
+            if (index != -1) {
+                System.out.println("Enter the " + (i + 1) + "st Denomination number of notes:");
+                int numOfNotes = scanner.nextInt();
+                notes[index] = numOfNotes;
+                totalBalance += denomination * numOfNotes;
+            } else {
+                System.out.println("Invalid denomination entered. Please try again.");
+                i--; // Decrement i to retry this iteration
+            }
+        }
+        System.out.println("Total Available Balance in ATM: " + totalBalance);
+
+        scanner.close();
+    }
+    public static int indexOf(int[] array, int value) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
