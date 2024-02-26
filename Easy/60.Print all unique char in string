@@ -1,0 +1,25 @@
+import java.util.HashSet;
+import java.util.Set;
+public class UniqueCharacters {
+    public static void main(String[] args) {
+        String inputString = "abcb";
+        Set<Character> uniqueChars = findUniqueCharacters(inputString);
+        System.out.println("Unique characters in the string:");
+        for (char c : uniqueChars) {
+            System.out.print(c + " ");
+        }
+    }
+    private static Set<Character> findUniqueCharacters(String str) {
+        Set<Character> uniqueChars = new HashSet<>();
+        Set<Character> repeatedChars = new HashSet<>();
+        for (char c : str.toCharArray()) {
+            if (!uniqueChars.contains(c)) {
+                uniqueChars.add(c);
+            } else {
+                repeatedChars.add(c);
+            }
+        }
+        uniqueChars.removeAll(repeatedChars);
+        return uniqueChars;
+    }
+}
