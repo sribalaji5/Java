@@ -1,0 +1,30 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    public static void main(String[] args) {
+        Map<Integer, String> employeeRecords = new HashMap<>();
+        employeeRecords.put(101, "John Doe");
+        employeeRecords.put(102, "Jane Smith");
+        employeeRecords.put(103, "Alice Johnson");
+
+        System.out.println("Employee Records:");
+        for (Map.Entry<Integer, String> entry : employeeRecords.entrySet()) {
+            System.out.println("Employee ID: " + entry.getKey() + ", Employee Name: " + entry.getValue());
+        }
+
+        System.out.println("Is the map empty? " + employeeRecords.isEmpty());
+
+        int employeeIdToRemove = 102;
+        String removedEmployee = employeeRecords.remove(employeeIdToRemove);
+        System.out.println("Removed employee with ID " + employeeIdToRemove + ": " + removedEmployee);
+
+        System.out.println("Employee Records after removal:");
+        for (Map.Entry<Integer, String> entry : employeeRecords.entrySet()) {
+            System.out.println("Employee ID: " + entry.getKey() + ", Employee Name: " + entry.getValue());
+        }
+
+        employeeRecords.clear();
+        System.out.println("Map cleared. Is the map empty now? " + employeeRecords.isEmpty());
+    }
+}
