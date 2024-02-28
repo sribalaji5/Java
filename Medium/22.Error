@@ -1,0 +1,15 @@
+public class Main {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0;
+
+            int[] arr = { 1, 2, 3 };
+            int value = arr[5];
+
+            String str = null;
+            int length = str.length();
+        } catch (ArithmeticException | ArrayIndexOutOfBoundsException | NullPointerException e) {
+            System.out.println("Exception caught: " + e);
+        }
+    }
+}
