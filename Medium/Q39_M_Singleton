@@ -1,0 +1,33 @@
+class Singleton {
+    private static Singleton instance = null;
+    private static boolean objectCreated = false;
+
+    private Singleton() {
+        if (objectCreated) {
+            throw new IllegalStateException("An instance of Singleton already exists.");
+        }
+        objectCreated = true;
+        System.out.println("Singleton object created.");
+    }
+
+    public static synchronized Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating the first object
+        Singleton obj1 = Singleton.getInstance();
+
+        try {
+            // Attempting to create the second object
+            Singleton obj2 = Singleton.getInstance();
+        } catch (IllegalStateException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+    }
+}

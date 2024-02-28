@@ -1,0 +1,21 @@
+public class Main {
+    public static void main(String[] args) {
+        String num1 = "123";
+        String num2 = "456";
+
+        String product = multiplyStrings(num1, num2);
+        System.out.println("Product of " + num1 + " and " + num2 + " is: " + product);
+    }
+
+    public static String multiplyStrings(String num1, String num2) {
+        // Convert the input strings to integers
+        int intNum1 = Integer.parseInt(num1);
+        int intNum2 = Integer.parseInt(num2);
+
+        // Perform the multiplication operation
+        int result = intNum1 * intNum2;
+
+        // Convert the result back to a string
+        return String.valueOf(result);
+    }
+}

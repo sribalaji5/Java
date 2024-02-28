@@ -1,0 +1,31 @@
+import java.util.HashSet;
+import java.util.Set;
+
+public class Main {
+    public static void main(String[] args) {
+        String tiles = "AAB";
+        int count = numTilePossibilities(tiles);
+        System.out.println("Number of possible sequences: " + count);
+    }
+
+    public static int numTilePossibilities(String tiles) {
+        Set<String> set = new HashSet<>();
+        backtrack("", tiles.toCharArray(), set);
+        return set.size();
+    }
+
+    private static void backtrack(String current, char[] tiles, Set<String> set) {
+        if (!current.isEmpty()) {
+            set.add(current);
+        }
+        for (int i = 0; i < tiles.length; i++) {
+            char ch = tiles[i];
+            if (ch == '#') {
+                continue;
+            }
+            tiles[i] = '#'; // Mark the letter as used
+            backtrack(current + ch, tiles, set);
+            tiles[i] = ch; // Backtrack by restoring the letter
+        }
+    }
+}

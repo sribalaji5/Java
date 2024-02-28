@@ -1,0 +1,47 @@
+public class Main {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 0;
+
+        try {
+            // Division operation
+            int division = divide(a, b);
+            System.out.println("Division result: " + division);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Division by zero");
+        }
+
+        // Other arithmetic operations
+        int addition = add(a, b);
+        System.out.println("Addition result: " + addition);
+
+        int subtraction = subtract(a, b);
+        System.out.println("Subtraction result: " + subtraction);
+
+        int multiplication = multiply(a, b);
+        System.out.println("Multiplication result: " + multiplication);
+    }
+
+    // Method to perform division operation
+    public static int divide(int a, int b) {
+        if (b == 0) {
+            throw new ArithmeticException("Division by zero");
+        }
+        return a / b;
+    }
+
+    // Method to perform addition operation
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    // Method to perform subtraction operation
+    public static int subtract(int a, int b) {
+        return a - b;
+    }
+
+    // Method to perform multiplication operation
+    public static int multiply(int a, int b) {
+        return a * b;
+    }
+}

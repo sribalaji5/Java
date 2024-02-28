@@ -1,0 +1,52 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+
+public class Main {
+    public static void main(String[] args) {
+        String filename = "input.txt"; // Specify the file path
+
+        try {
+            // Counting words, characters, and lines using Stream I/O
+            long wordCount = countWords(filename);
+            long charCount = countCharacters(filename);
+            long lineCount = countLines(filename);
+
+            // Displaying the counts
+            System.out.println("Number of words: " + wordCount);
+            System.out.println("Number of characters: " + charCount);
+            System.out.println("Number of lines: " + lineCount);
+        } catch (IOException e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+
+    // Method to count words using Stream I/O
+    public static long countWords(String filename) throws IOException {
+        try (Stream<String> lines = Files.lines(Paths.get(filename))) {
+            return lines.flatMap(line -> Stream.of(line.split("\\s+")))
+                        .filter(word -> !word.isEmpty())
+                        .count();
+        }
+    }
+
+    // Method to count characters using BufferedReader and FileReader
+    public static long countCharacters(String filename) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            return reader.lines()
+                         .flatMapToInt(CharSequence::chars)
+                         .filter(c -> c != ' ') // Exclude space characters from count
+                         .count();
+        }
+    }
+
+    // Method to count lines using BufferedReader and FileReader
+    public static long countLines(String filename) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            return reader.lines().count();
+        }
+    }
+}

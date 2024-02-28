@@ -1,0 +1,27 @@
+class Parent {
+    public void printMessage() {
+        System.out.println("This is parent class");
+    }
+}
+
+class Child extends Parent {
+    public void printMessage() {
+        System.out.println("This is child class");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating an object of the parent class and calling its method
+        Parent parentObj = new Parent();
+        parentObj.printMessage();
+
+        // Creating an object of the child class and calling its method
+        Child childObj = new Child();
+        childObj.printMessage();
+
+        // Calling the method of the parent class using the object of the child class
+        childObj.printMessage(); // This will call the overridden method in the Child class
+        ((Parent) childObj).printMessage(); // This will call the method of the Parent class
+    }
+}

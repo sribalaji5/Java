@@ -1,0 +1,49 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        String filePath = "example.txt";
+
+        try {
+            // Counting characters, words, and lines in the file
+            CountResult result = countFile(filePath);
+            System.out.println("Number of characters: " + result.characters);
+            System.out.println("Number of words: " + result.words);
+            System.out.println("Number of lines: " + result.lines);
+        } catch (IOException e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+
+    public static CountResult countFile(String filePath) throws IOException {
+        int characters = 0;
+        int words = 0;
+        int lines = 0;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines++;
+                characters += line.length();
+                String[] wordsArray = line.trim().split("\\s+");
+                words += wordsArray.length;
+            }
+        }
+
+        return new CountResult(characters, words, lines);
+    }
+
+    static class CountResult {
+        int characters;
+        int words;
+        int lines;
+
+        public CountResult(int characters, int words, int lines) {
+            this.characters = characters;
+            this.words = words;
+            this.lines = lines;
+        }
+    }
+}

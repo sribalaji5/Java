@@ -1,0 +1,41 @@
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        String sourceFilePath = "source.txt";
+        String destinationFilePath = "destination.txt";
+
+        try {
+            // Reading data from source file
+            String data = readFile(sourceFilePath);
+
+            // Writing data to destination file
+            writeFile(destinationFilePath, data);
+
+            System.out.println("Data copied from source file to destination file successfully.");
+        } catch (IOException e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+
+    public static String readFile(String filePath) throws IOException {
+        StringBuilder content = new StringBuilder();
+
+        try (FileReader fileReader = new FileReader(filePath)) {
+            int character;
+            while ((character = fileReader.read()) != -1) {
+                content.append((char) character);
+            }
+        }
+
+        return content.toString();
+    }
+
+    public static void writeFile(String filePath, String data) throws IOException {
+        try (FileWriter fileWriter = new FileWriter(filePath)) {
+            fileWriter.write(data);
+        }
+    }
+}

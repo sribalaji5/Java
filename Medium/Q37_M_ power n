@@ -1,0 +1,28 @@
+public class Main {
+    public static void main(String[] args) {
+        double x = 2.00000;
+        int n = 10;
+        
+        double result = myPow(x, n);
+        System.out.println("Result: " + result);
+    }
+
+    public static double myPow(double x, int n) {
+        if (n == 0) {
+            return 1;
+        }
+        if (n == 1) {
+            return x;
+        }
+        if (n < 0) {
+            x = 1 / x;
+            // Handle overflow when n is Integer.MIN_VALUE
+            if (n == Integer.MIN_VALUE) {
+                n++;
+                return x * myPow(x, -n);
+            }
+            n = -n;
+        }
+        return (n % 2 == 0) ? myPow(x * x, n / 2) : x * myPow(x * x, n / 2);
+    }
+}

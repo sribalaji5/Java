@@ -1,0 +1,22 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>(Arrays.asList("C", "A", "E", "B", "D", "F"));
+
+        // Creating a ListIterator to traverse the list
+        ListIterator<String> iterator = list.listIterator();
+
+        // Appending "+" symbol to each element using ListIterator
+        while (iterator.hasNext()) {
+            String element = iterator.next();
+            iterator.set(element + "+");
+        }
+
+        // Printing the list in reverse order
+        System.out.println("Elements in reverse order:");
+        while (iterator.hasPrevious()) {
+            System.out.print(iterator.previous() + " ");
+        }
+    }
+}
