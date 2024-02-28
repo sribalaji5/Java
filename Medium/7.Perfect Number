@@ -1,0 +1,69 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class PerfectNumbers {
+    public static int sumOfDivisors(int n) {
+        if (n == 1) {
+            return 0;
+        }
+        int divisorSum = 1;
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                divisorSum += i;
+                if (n / i != i) { // If divisors are not same, add the other divisor
+                    divisorSum += n / i;
+                }
+            }
+        }
+        return divisorSum;
+    }
+
+    public static boolean isPerfectNumber(int num) {
+        return sumOfDivisors(num) == num;
+    }
+
+    public static List<Integer> firstNPerfectNumbers(int n) {
+        List<Integer> perfectNumbers = new ArrayList<>();
+        if (n <= 0) {
+            System.out.println("Please enter a positive integer.");
+            return perfectNumbers;
+        }
+        int num = 1;
+        while (perfectNumbers.size() < n) {
+            if (isPerfectNumber(num)) {
+                perfectNumbers.add(num);
+            }
+            num++;
+        }
+        return perfectNumbers;
+    }
+
+    public static void main(String[] args) {
+        // Sample Input
+        int N = 3;
+        List<Integer> firstNPerfect = firstNPerfectNumbers(N);
+        System.out.print("First " + N + " perfect numbers are: ");
+        for (int i = 0; i < firstNPerfect.size(); i++) {
+            if (i > 0) {
+                System.out.print(", ");
+            }
+            System.out.print(firstNPerfect.get(i));
+        }
+        System.out.println();
+        // Test Cases
+        int[] testCases = {0, 5, -2, -5};
+        for (int testCase : testCases) {
+            List<Integer> perfectNumbers = firstNPerfectNumbers(testCase);
+            if (!perfectNumbers.isEmpty()) {
+                System.out.print("First " + testCase + " perfect numbers are: ");
+                for (int i = 0; i < perfectNumbers.size(); i++) {
+                    if (i > 0) {
+                        System.out.print(", ");
+                    }
+                    System.out.print(perfectNumbers.get(i));
+                }
+                System.out.println();
+            }
+        }
+    }
+}
