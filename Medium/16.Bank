@@ -1,0 +1,30 @@
+import java.util.*;
+
+class Bank {
+    String bankName;
+    double interestRate;
+    public Bank(String bankName, double interestRate) {
+        this.bankName = bankName;
+        this.interestRate = interestRate;
+    }
+    public double getInterestRate() {
+        return this.interestRate;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Bank sbi = new Bank("SBI", 8.4);
+        Bank icici = new Bank("ICICI", 7.3);
+        Bank axis = new Bank("AXIS", 9.7);
+        List<Bank> banks = new ArrayList<>();
+        banks.add(sbi);
+        banks.add(icici);
+        banks.add(axis);
+
+        System.out.println("Test case:");
+        for (int i = 0; i < banks.size(); i++) {
+            Bank bank = banks.get(i);
+            System.out.println((i + 1) + ". " + bank.bankName + ", " + bank.interestRate);
+        }
+    }
+}
