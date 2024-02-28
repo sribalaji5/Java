@@ -1,0 +1,45 @@
+class Superclass {
+    int super_x;
+
+    public Superclass(int super_x) {
+        this.super_x = super_x;
+    }
+
+    public void displaySuperX() {
+        System.out.println("Value of super_x in Superclass: " + super_x);
+    }
+}
+
+class Subclass extends Superclass {
+    int sub_x;
+
+    public Subclass(int super_x, int sub_x) {
+        super(super_x);  
+        this.sub_x = sub_x;
+    }
+
+    @Override
+    public void displaySuperX() { 
+        super.displaySuperX();  
+        System.out.println("Value of sub_x in Subclass: " + sub_x);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Test cases:
+        int[][] testCases = {
+                {10, 20},
+                {-20, -30},
+                {0, 0},
+                {10, 20},  
+                {0, 0}  
+        };
+
+        for (int[] testCase : testCases) {
+            Subclass obj = new Subclass(testCase[0], testCase[1]);
+            obj.displaySuperX();
+            System.out.println(); 
+        }
+    }
+}
