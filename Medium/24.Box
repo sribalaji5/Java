@@ -1,0 +1,23 @@
+class Box {
+    double length;
+    double width;
+    double height;
+
+    public Box() {
+        this.length = 1.0;
+        this.width = 1.0;
+        this.height = 1.0;
+    }
+    public void calculateVolume() {
+        double volume = length * width * height;
+        System.out.println("Volume of the box: " + volume);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Box box = new Box();
+
+        box.calculateVolume();
+    }
+}
