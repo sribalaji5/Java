@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class NumberAndSquareArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the lower range: ");
+        int lowerRange = scanner.nextInt();
+
+        System.out.print("Enter the upper range: ");
+        int upperRange = scanner.nextInt();
+
+        scanner.close();
+
+        if (lowerRange > upperRange) {
+            System.out.println("Invalid input. Lower range cannot be greater than upper range.");
+            return;
+        }
+
+        ArrayList<int[]> result = createArrayWithNumberAndSquare(lowerRange, upperRange);
+
+        System.out.print("[");
+        for (int i = 0; i < result.size(); i++) {
+            int[] pair = result.get(i);
+            System.out.print("(" + pair[0] + ", " + pair[1] + ")");
+            if (i < result.size() - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
+    }
+
+    public static ArrayList<int[]> createArrayWithNumberAndSquare(int lowerRange, int upperRange) {
+        ArrayList<int[]> result = new ArrayList<>();
+        for (int i = lowerRange; i <= upperRange; i++) {
+            result.add(new int[]{i, i * i});
+        }
+        return result;
+    }
+}

@@ -1,0 +1,76 @@
+import java.util.ArrayList;
+
+class Employee {
+    private String name;
+    private int id;
+    private double salary;
+    private double pf;
+    private double allowance;
+
+    // Constructor
+    public Employee(String name, int id, double salary, double pf, double allowance) {
+        this.name = name;
+        this.id = id;
+        this.salary = salary;
+        this.pf = pf;
+        this.allowance = allowance;
+    }
+
+    // Getter methods
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public double getPf() {
+        return pf;
+    }
+
+    public double getAllowance() {
+        return allowance;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an ArrayList to store employee details
+        ArrayList<Employee> employees = new ArrayList<>();
+
+        // Add employee details
+        employees.add(new Employee("John Doe", 1001, 50000, 5000, 2000));
+        employees.add(new Employee("Jane Smith", 1002, 60000, 6000, 2500));
+        employees.add(new Employee("Alice Johnson", 1003, 55000, 5500, 2300));
+
+        // Display employee details
+        System.out.println("Employee Details:");
+        for (Employee emp : employees) {
+            System.out.println("Name: " + emp.getName());
+            System.out.println("ID: " + emp.getId());
+            System.out.println("Salary: " + emp.getSalary());
+            System.out.println("PF: " + emp.getPf());
+            System.out.println("Allowance: " + emp.getAllowance());
+            System.out.println();
+        }
+
+        // Remove an employee from the list
+        employees.remove(1);
+
+        // Display updated employee details
+        System.out.println("Employee Details after removal:");
+        for (Employee emp : employees) {
+            System.out.println("Name: " + emp.getName());
+            System.out.println("ID: " + emp.getId());
+            System.out.println("Salary: " + emp.getSalary());
+            System.out.println("PF: " + emp.getPf());
+            System.out.println("Allowance: " + emp.getAllowance());
+            System.out.println();
+        }
+    }
+}

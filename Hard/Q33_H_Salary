@@ -1,0 +1,69 @@
+class Employee {
+    private String name;
+    private double basicSalary;
+
+    // Constructor
+    public Employee(String name, double basicSalary) {
+        this.name = name;
+        this.basicSalary = basicSalary;
+    }
+
+    // Method to get salary
+    public double getSalary() {
+        return basicSalary;
+    }
+
+    // Method to display employee details
+    public void displayDetails() {
+        System.out.println("Employee Name: " + name);
+        System.out.println("Basic Salary: " + basicSalary);
+    }
+}
+
+class Manager extends Employee {
+    private double travelAllowance;
+    private double houseRentAllowance;
+
+    // Constructor
+    public Manager(String name, double basicSalary, double travelAllowance, double houseRentAllowance) {
+        super(name, basicSalary);
+        this.travelAllowance = travelAllowance;
+        this.houseRentAllowance = houseRentAllowance;
+    }
+
+    // Method to override getSalary method to include additional allowances
+    @Override
+    public double getSalary() {
+        return super.getSalary() + travelAllowance + houseRentAllowance;
+    }
+
+    // Method to display manager details
+    @Override
+    public void displayDetails() {
+        super.displayDetails();
+        System.out.println("Travel Allowance: " + travelAllowance);
+        System.out.println("House Rent Allowance: " + houseRentAllowance);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an Employee object
+        Employee employee = new Employee("John", 50000);
+        // Display employee details
+        System.out.println("Employee Details:");
+        employee.displayDetails();
+        // Display employee salary
+        System.out.println("Salary: " + employee.getSalary());
+
+        System.out.println();
+
+        // Create a Manager object
+        Manager manager = new Manager("Alice", 80000, 10000, 15000);
+        // Display manager details
+        System.out.println("Manager Details:");
+        manager.displayDetails();
+        // Display manager salary
+        System.out.println("Salary: " + manager.getSalary());
+    }
+}

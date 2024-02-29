@@ -1,0 +1,63 @@
+public class DivideArrayIntoThreeParts {
+
+    public static int[] threeEqualParts(int[] arr) {
+        int n = arr.length;
+        int[] result = {-1, -1};
+
+        // Count the number of ones in the array
+        int countOnes = 0;
+        for (int num : arr) {
+            if (num == 1) {
+                countOnes++;
+            }
+        }
+
+        // If the count of ones is not divisible by 3, it's impossible to split the array
+        if (countOnes % 3 != 0) {
+            return result;
+        }
+
+        // If there are no ones, we can choose any two indices to split the array
+        if (countOnes == 0) {
+            return new int[]{0, n - 1};
+        }
+
+        // Determine the number of ones in each part
+        int onesInEachPart = countOnes / 3;
+
+        // Find the starting indices of each part
+        int firstOnesIndex = -1, secondOnesIndex = -1, thirdOnesIndex = -1, count = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 1) {
+                count++;
+                if (count == 1) {
+                    firstOnesIndex = i;
+                } else if (count == onesInEachPart + 1) {
+                    secondOnesIndex = i;
+                } else if (count == 2 * onesInEachPart + 1) {
+                    thirdOnesIndex = i;
+                    break;
+                }
+            }
+        }
+
+        // Compare the parts to ensure they represent the same binary value
+        while (thirdOnesIndex < n) {
+            if (arr[firstOnesIndex] != arr[secondOnesIndex] || arr[firstOnesIndex] != arr[thirdOnesIndex]) {
+                return result;
+            }
+            firstOnesIndex++;
+            secondOnesIndex++;
+            thirdOnesIndex++;
+        }
+
+        // Return the result
+        return new int[]{firstOnesIndex - 1, secondOnesIndex};
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 0, 1, 0, 1};
+        int[] result = threeEqualParts(arr);
+        System.out.println("Result: [" + result[0] + ", " + result[1] + "]");
+    }
+}

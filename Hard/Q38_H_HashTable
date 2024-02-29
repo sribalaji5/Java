@@ -1,0 +1,39 @@
+import java.util.Enumeration;
+import java.util.Hashtable;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a Hashtable
+        Hashtable<Integer, String> hashtable = new Hashtable<>();
+
+        // Add elements to the Hashtable
+        hashtable.put(1, "John");
+        hashtable.put(2, "Alice");
+        hashtable.put(3, "Bob");
+        hashtable.put(4, "Emily");
+
+        // Display all keys using Enumeration
+        System.out.println("All keys in the Hashtable:");
+        Enumeration<Integer> keys = hashtable.keys();
+        while (keys.hasMoreElements()) {
+            int key = keys.nextElement();
+            System.out.println(key);
+        }
+
+        // Search for a key
+        int searchKey = 3;
+        if (hashtable.containsKey(searchKey)) {
+            System.out.println("Key " + searchKey + " exists in the Hashtable.");
+        } else {
+            System.out.println("Key " + searchKey + " does not exist in the Hashtable.");
+        }
+
+        // Search for a value
+        String searchValue = "Alice";
+        if (hashtable.containsValue(searchValue)) {
+            System.out.println("Value '" + searchValue + "' exists in the Hashtable.");
+        } else {
+            System.out.println("Value '" + searchValue + "' does not exist in the Hashtable.");
+        }
+    }
+}

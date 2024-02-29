@@ -1,0 +1,27 @@
+import java.util.HashSet;
+import java.util.Set;
+
+public class Solution {
+    public int subarrayBitwiseORs(int[] arr) {
+        Set<Integer> uniqueValues = new HashSet<>();
+        Set<Integer> currentValues = new HashSet<>();
+
+        for (int num : arr) {
+            Set<Integer> newValues = new HashSet<>();
+            newValues.add(num);
+            for (int val : currentValues) {
+                newValues.add(val | num);
+            }
+            currentValues = newValues;
+            uniqueValues.addAll(currentValues);
+        }
+
+        return uniqueValues.size();
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[] arr = {1, 1, 2};
+        System.out.println(solution.subarrayBitwiseORs(arr)); // Output: 3
+    }
+}

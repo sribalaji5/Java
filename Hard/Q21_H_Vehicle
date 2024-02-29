@@ -1,0 +1,113 @@
+// Vehicle class
+class Vehicle {
+    private String licensePlate;
+    private String owner;
+
+    // Constructor
+    public Vehicle(String licensePlate, String owner) {
+        this.licensePlate = licensePlate;
+        this.owner = owner;
+    }
+
+    // Getters and setters
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+}
+
+// Car class (subclass of Vehicle)
+class Car extends Vehicle {
+    private int numDoors;
+
+    // Constructor
+    public Car(String licensePlate, String owner, int numDoors) {
+        super(licensePlate, owner);
+        this.numDoors = numDoors;
+    }
+
+    // Getter and setter for numDoors
+    public int getNumDoors() {
+        return numDoors;
+    }
+
+    public void setNumDoors(int numDoors) {
+        this.numDoors = numDoors;
+    }
+}
+
+// Truck class (subclass of Vehicle)
+class Truck extends Vehicle {
+    private int loadCapacity;
+
+    // Constructor
+    public Truck(String licensePlate, String owner, int loadCapacity) {
+        super(licensePlate, owner);
+        this.loadCapacity = loadCapacity;
+    }
+
+    // Getter and setter for loadCapacity
+    public int getLoadCapacity() {
+        return loadCapacity;
+    }
+
+    public void setLoadCapacity(int loadCapacity) {
+        this.loadCapacity = loadCapacity;
+    }
+}
+
+// Motorcycle class (subclass of Vehicle)
+class Motorcycle extends Vehicle {
+    private int engineCapacity;
+
+    // Constructor
+    public Motorcycle(String licensePlate, String owner, int engineCapacity) {
+        super(licensePlate, owner);
+        this.engineCapacity = engineCapacity;
+    }
+
+    // Getter and setter for engineCapacity
+    public int getEngineCapacity() {
+        return engineCapacity;
+    }
+
+    public void setEngineCapacity(int engineCapacity) {
+        this.engineCapacity = engineCapacity;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating instances of Car, Truck, and Motorcycle
+        Car car = new Car("ABC123", "John", 4);
+        Truck truck = new Truck("XYZ456", "Alice", 1000);
+        Motorcycle motorcycle = new Motorcycle("DEF789", "Bob", 250);
+
+        // Displaying details
+        System.out.println("Car Details:");
+        System.out.println("License Plate: " + car.getLicensePlate());
+        System.out.println("Owner: " + car.getOwner());
+        System.out.println("Number of Doors: " + car.getNumDoors());
+
+        System.out.println("\nTruck Details:");
+        System.out.println("License Plate: " + truck.getLicensePlate());
+        System.out.println("Owner: " + truck.getOwner());
+        System.out.println("Load Capacity: " + truck.getLoadCapacity());
+
+        System.out.println("\nMotorcycle Details:");
+        System.out.println("License Plate: " + motorcycle.getLicensePlate());
+        System.out.println("Owner: " + motorcycle.getOwner());
+        System.out.println("Engine Capacity: " + motorcycle.getEngineCapacity());
+    }
+}

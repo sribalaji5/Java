@@ -1,0 +1,42 @@
+public class Main {
+    public static void main(String[] args) {
+        // Create two threads with different priorities
+        Thread thread1 = new Thread(new Worker("Thread 1"), "Thread 1");
+        Thread thread2 = new Thread(new Worker("Thread 2"), "Thread 2");
+
+        // Set priorities for the threads
+        thread1.setPriority(Thread.MIN_PRIORITY); // Lowest priority
+        thread2.setPriority(Thread.MAX_PRIORITY); // Highest priority
+
+        // Start both threads
+        thread1.start();
+        thread2.start();
+    }
+
+    static class Worker implements Runnable {
+        private String name;
+
+        public Worker(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public void run() {
+            // Display the thread name and priority
+            System.out.println("Thread " + name + " started with priority " + Thread.currentThread().getPriority());
+
+            // Perform some dummy work
+            for (int i = 0; i < 5; i++) {
+                System.out.println("Thread " + name + " is working " + i);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // Display thread completion message
+            System.out.println("Thread " + name + " completed its work");
+        }
+    }
+}

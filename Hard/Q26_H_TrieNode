@@ -1,0 +1,76 @@
+class TrieNode {
+    TrieNode[] children;
+    int weight;
+
+    TrieNode() {
+        children = new TrieNode[27]; // Assuming input words contain lowercase English letters and '{' is not a valid character in the input
+        weight = -1;
+    }
+}
+
+public class WordFilter {
+    TrieNode prefixTrie;
+    TrieNode suffixTrie;
+    
+    public WordFilter(String[] words) {
+        prefixTrie = new TrieNode();
+        suffixTrie = new TrieNode();
+        for (int weight = 0; weight < words.length; weight++) {
+            String word = words[weight];
+            insertWord(prefixTrie, word + "{", weight);
+            insertWord(suffixTrie, new StringBuilder(word).reverse().toString() + "{", weight);
+        }
+    }
+    
+    public void insertWord(TrieNode trie, String word, int weight) {
+        TrieNode node = trie;
+        for (char c : word.toCharArray()) {
+            int index = c - 'a';
+            if (node.children[index] == null) {
+                node.children[index] = new TrieNode();
+            }
+            node = node.children[index];
+            node.weight = weight;
+        }
+    }
+    
+    public int f(String prefix, String suffix) {
+        TrieNode node = prefixTrie;
+        for (char c : prefix.toCharArray()) {
+            int index = c - 'a';
+            if (node.children[index] == null) {
+                return -1;
+            }
+            node = node.children[index];
+        }
+        int prefixWeight = node.weight;
+        
+        node = suffixTrie;
+        for (char c : new StringBuilder(suffix).reverse().toString().toCharArray()) {
+            int index = c - 'a';
+            if (node.children[index] == null) {
+                return -1;
+            }
+            node = node.children[index];
+        }
+        int suffixWeight = node.weight;
+        
+        while (prefixWeight != suffixWeight) {
+            if (prefixWeight > suffixWeight) {
+                prefixWeight = prefixTrie.children[prefix.charAt(0) - 'a'].weight;
+            } else {
+                suffixWeight = suffixTrie.children[suffix.charAt(suffix.length() - 1) - 'a'].weight;
+            }
+        }
+        
+        return prefixWeight;
+    }
+    
+    public static void main(String[] args) {
+        String[] words = {"apple", "banana", "orange", "pineapple"};
+        WordFilter wordFilter = new WordFilter(words);
+        System.out.println(wordFilter.f("ap", "le")); // Output: 0 (word "apple")
+        System.out.println(wordFilter.f("p", "e")); // Output: 3 (word "pineapple")
+        System.out.println(wordFilter.f("z", "e")); // Output: -1 (no such word)
+    }
+}

@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class TaxCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Input income
+        System.out.print("Enter the income: ");
+        int income = scanner.nextInt();
+        scanner.close();
+
+        // Calculate taxable income
+        int taxableIncome = income - 250000;
+
+        // Calculate tax
+        int tax = 0;
+        if (taxableIncome > 1000000) {
+            tax += (taxableIncome - 1000000) * 0.3;
+            taxableIncome = 1000000;
+        }
+        if (taxableIncome > 500000) {
+            tax += (taxableIncome - 500000) * 0.2;
+            taxableIncome = 500000;
+        }
+        if (taxableIncome > 0) {
+            tax += taxableIncome * 0.1;
+        }
+
+        // Display results
+        System.out.println("Taxable Income: " + (income - 250000));
+        System.out.println("Tax= " + tax);
+    }
+}

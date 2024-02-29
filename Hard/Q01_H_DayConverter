@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class DayConverter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of days: ");
+        int days = scanner.nextInt();
+        scanner.close();
+
+        int years = days / 365;
+        int remainingDays = days % 365;
+        int weeks = remainingDays / 7;
+        int remainingDaysFinal = remainingDays % 7;
+
+        System.out.println("No. of years: " + years);
+        System.out.println("No. of weeks: " + weeks);
+        System.out.println("No. of days: " + remainingDaysFinal);
+    }
+
+    public static String findDayOfWeek(int day, int month, int year) {
+        int[] t = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
+        year -= (month < 3) ? 1 : 0;
+        int dayOfWeek = (year + year/4 - year/100 + year/400 + t[month-1] + day) % 7;
+        
+        String[] daysOfWeek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+        return daysOfWeek[dayOfWeek];
+    }
+}

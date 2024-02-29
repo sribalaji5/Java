@@ -1,0 +1,82 @@
+// Calculator class to perform operations
+class Calculator {
+    // Method to add two numbers
+    public synchronized void add(int a, int b) {
+        System.out.println("Addition Result: " + (a + b));
+    }
+
+    // Method to subtract two numbers
+    public synchronized void subtract(int a, int b) {
+        System.out.println("Subtraction Result: " + (a - b));
+    }
+
+    // Method to multiply two numbers
+    public synchronized void multiply(int a, int b) {
+        System.out.println("Multiplication Result: " + (a * b));
+    }
+
+    // Method to divide two numbers
+    public synchronized void divide(int a, int b) {
+        if (b != 0) {
+            System.out.println("Division Result: " + (a / b));
+        } else {
+            System.out.println("Cannot divide by zero");
+        }
+    }
+}
+
+// Thread class for performing calculator operations
+class CalculatorThread extends Thread {
+    private Calculator calculator;
+    private int a;
+    private int b;
+    private String operation;
+
+    // Constructor
+    public CalculatorThread(Calculator calculator, int a, int b, String operation) {
+        this.calculator = calculator;
+        this.a = a;
+        this.b = b;
+        this.operation = operation;
+    }
+
+    // Run method to perform operation based on the given operation
+    @Override
+    public void run() {
+        switch (operation) {
+            case "add":
+                calculator.add(a, b);
+                break;
+            case "subtract":
+                calculator.subtract(a, b);
+                break;
+            case "multiply":
+                calculator.multiply(a, b);
+                break;
+            case "divide":
+                calculator.divide(a, b);
+                break;
+            default:
+                System.out.println("Invalid operation");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a calculator object
+        Calculator calculator = new Calculator();
+
+        // Create threads for different calculator operations
+        CalculatorThread addThread = new CalculatorThread(calculator, 10, 5, "add");
+        CalculatorThread subtractThread = new CalculatorThread(calculator, 10, 5, "subtract");
+        CalculatorThread multiplyThread = new CalculatorThread(calculator, 10, 5, "multiply");
+        CalculatorThread divideThread = new CalculatorThread(calculator, 10, 5, "divide");
+
+        // Start the threads
+        addThread.start();
+        subtractThread.start();
+        multiplyThread.start();
+        divideThread.start();
+    }
+}

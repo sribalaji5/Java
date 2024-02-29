@@ -1,0 +1,117 @@
+import java.util.Vector;
+
+class Student {
+    private String name;
+    private int rollNumber;
+    private String department;
+    private String course;
+    private String contactInfo;
+
+    // Constructor
+    public Student(String name, int rollNumber, String department, String course, String contactInfo) {
+        this.name = name;
+        this.rollNumber = rollNumber;
+        this.department = department;
+        this.course = course;
+        this.contactInfo = contactInfo;
+    }
+
+    // Getters
+    public String getName() {
+        return name;
+    }
+
+    public int getRollNumber() {
+        return rollNumber;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public String getContactInfo() {
+        return contactInfo;
+    }
+
+    // Override toString method to display student information
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Roll Number: " + rollNumber + ", Department: " + department +
+                ", Course: " + course + ", Contact Info: " + contactInfo;
+    }
+}
+
+class StudentDatabase {
+    private Vector<Student> students;
+
+    // Constructor
+    public StudentDatabase() {
+        students = new Vector<>();
+    }
+
+    // Method to insert a new student record
+    public void insertStudent(Student student) {
+        students.add(student);
+    }
+
+    // Method to retrieve a student record by roll number
+    public Student retrieveStudent(int rollNumber) {
+        for (Student student : students) {
+            if (student.getRollNumber() == rollNumber) {
+                return student;
+            }
+        }
+        return null; // Return null if student with given roll number is not found
+    }
+
+    // Method to remove a student record by roll number
+    public void removeStudent(int rollNumber) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getRollNumber() == rollNumber) {
+                students.remove(i);
+                return;
+            }
+        }
+    }
+
+    // Method to display all student records
+    public void displayAllStudents() {
+        for (Student student : students) {
+            System.out.println(student);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a student database
+        StudentDatabase database = new StudentDatabase();
+
+        // Insert some student records
+        database.insertStudent(new Student("Alice", 101, "Computer Science", "B.Tech", "alice@example.com"));
+        database.insertStudent(new Student("Bob", 102, "Electrical Engineering", "M.Tech", "bob@example.com"));
+        database.insertStudent(new Student("Charlie", 103, "Mechanical Engineering", "B.E", "charlie@example.com"));
+
+        // Display all student records
+        System.out.println("All Students:");
+        database.displayAllStudents();
+
+        // Retrieve and display a student record
+        System.out.println("\nRetrieving Student with Roll Number 102:");
+        Student student = database.retrieveStudent(102);
+        if (student != null) {
+            System.out.println(student);
+        } else {
+            System.out.println("Student not found");
+        }
+
+        // Remove a student record
+        database.removeStudent(103);
+        System.out.println("\nAfter Removing Student with Roll Number 103:");
+        database.displayAllStudents();
+    }
+}

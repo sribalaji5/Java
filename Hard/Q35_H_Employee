@@ -1,0 +1,48 @@
+class Employee {
+    private String name;
+    private int id;
+    private double salary;
+
+    // Setter methods
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    // Getter methods
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an Employee object
+        Employee emp = new Employee();
+
+        // Set employee details using setter methods
+        emp.setName("John Doe");
+        emp.setId(1001);
+        emp.setSalary(50000);
+
+        // Display employee details using getter methods
+        System.out.println("Employee Name: " + emp.getName());
+        System.out.println("Employee ID: " + emp.getId());
+        System.out.println("Employee Salary: " + emp.getSalary());
+    }
+}
