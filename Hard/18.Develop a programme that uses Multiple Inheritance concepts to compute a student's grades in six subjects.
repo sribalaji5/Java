@@ -1,0 +1,138 @@
+interface Subject {
+    int getMarks();
+}
+
+class Python implements Subject {
+    private int marks;
+
+    public Python(int marks) {
+        this.marks = marks;
+    }
+
+    public int getMarks() {
+        return marks;
+    }
+}
+
+class CProgramming implements Subject {
+    private int marks;
+
+    public CProgramming(int marks) {
+        this.marks = marks;
+    }
+
+    public int getMarks() {
+        return marks;
+    }
+}
+
+class Mathematics implements Subject {
+    private int marks;
+
+    public Mathematics(int marks) {
+        this.marks = marks;
+    }
+
+    public int getMarks() {
+        return marks;
+    }
+}
+
+class Physics implements Subject {
+    private int marks;
+
+    public Physics(int marks) {
+        this.marks = marks;
+    }
+
+    public int getMarks() {
+        return marks;
+    }
+}
+
+class Chemistry implements Subject {
+    private int marks;
+
+    public Chemistry(int marks) {
+        this.marks = marks;
+    }
+
+    public int getMarks() {
+        return marks;
+    }
+}
+
+class ProfessionalEthics implements Subject {
+    private int marks;
+
+    public ProfessionalEthics(int marks) {
+        this.marks = marks;
+    }
+
+    public int getMarks() {
+        return marks;
+    }
+}
+
+class StudentGrades {
+    private Subject[] subjects;
+
+    public StudentGrades(Subject[] subjects) {
+        this.subjects = subjects;
+    }
+
+    public int getTotalMarks() {
+        int total = 0;
+        for (Subject subject : subjects) {
+            total += subject.getMarks();
+        }
+        return total;
+    }
+
+    public double getAggregate() {
+        return (double) getTotalMarks() / subjects.length;
+    }
+
+    public String getGrade() {
+        double aggregate = getAggregate();
+        if (aggregate > 75) {
+            return "DISTINCTION";
+        } else if (aggregate >= 60) {
+            return "First Division";
+        } else if (aggregate >= 50) {
+            return "Second Division";
+        } else if (aggregate >= 40) {
+            return "Third Division";
+        } else {
+            return "FAIL";
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int pythonMarks = 90;
+        int cProgrammingMarks = 91;
+        int mathematicsMarks = 92;
+        int physicsMarks = 93;
+        int chemistryMarks = 92;
+        int professionalEthicsMarks = 93;
+
+        Subject[] subjects = {
+            new Python(pythonMarks),
+            new CProgramming(cProgrammingMarks),
+            new Mathematics(mathematicsMarks),
+            new Physics(physicsMarks),
+            new Chemistry(chemistryMarks),
+            new ProfessionalEthics(professionalEthicsMarks)
+        };
+
+        // Creating StudentGrades object
+        StudentGrades student = new StudentGrades(subjects);
+
+        // Displaying results
+        System.out.println("Total= " + student.getTotalMarks());
+        System.out.println("Aggregate= " + student.getAggregate());
+        System.out.println("Class: " + student.getGrade());
+    }
+}
